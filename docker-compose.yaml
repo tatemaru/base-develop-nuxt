@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./src:/src
+      # ↑ 次回起動後にコメントアウトを解除
+    working_dir: "/src"
+    ports:
+      - "24678:24678"
+      - "3000:3000"
+    tty: true
+    environment:
+    - HOST=0.0.0.0
+    - port=3000
+    - CHOKIDAR_USEPOLLING=true
